@@ -1,10 +1,10 @@
-#Options All -Indexes
-#
-## Force NON-WWW Redirect.
-#RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-#RewriteRule ^ %{REQUEST_SCHEME}://%1%{REQUEST_URI} [L,R=301]
-#
-## Force HTTPS Redirect.
-#RewriteCond %{HTTP:X-Forwarded-Proto} !https
-#RewriteCond %{HTTPS} off
-#RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+Options All -Indexes
+
+# Force NON-WWW Redirect.
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^ %{REQUEST_SCHEME}://%1%{REQUEST_URI} [L,R=301]
+
+# Force HTTPS Redirect.
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
