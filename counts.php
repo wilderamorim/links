@@ -1,9 +1,8 @@
 <?php
+declare(strict_types=1);
 
-function jsonEncode(array $json)
-{
-    return json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-}
+require_once dirname(__FILE__) . '/config/helpers.php';
+
 
 $path = dirname(__FILE__) . '/api';
 $file = $path . '/counts.json';
@@ -24,8 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!is_dir($path)) {
         mkdir($path);
     }
-    file_put_contents($file, jsonEncode($counts));
+    file_put_contents($file, json($counts));
 }
 
 header('Content-Type: application/json');
-echo jsonEncode($counts);
+echo json($counts);
