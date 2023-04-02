@@ -11,7 +11,7 @@ function asset(string $path): string
 {
     $path = 'assets/' . ($path[0] == '/' ? mb_substr($path, 1) : $path);
     $dir = dirname(__DIR__, 1) . '/' . $path;
-    if (!file_exists($dir)) {
+    if (file_exists($dir)) {
         $path .= '?v=' . filemtime($dir);
     }
     return $path;
