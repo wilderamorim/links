@@ -21,3 +21,13 @@ function json(array $json): string
 {
     return json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
+
+function sortArray(array &$arr, string $key, string $order = 'ASC'): array
+{
+    $comparisons = [
+        'ASC' => fn($a, $b) => ($a[$key] ?? false) <=> ($b[$key] ?? false),
+        'DESC' => fn($a, $b) => ($b[$key] ?? false) <=> ($a[$key] ?? false),
+    ];
+    uasort($arr, $comparisons[$order] ?? $comparisons['ASC']);
+    return $arr;
+}

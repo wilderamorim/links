@@ -5,7 +5,7 @@ require_once dirname(__FILE__) . '/config/helpers.php';
 
 
 $app = require dirname(__FILE__) . '/config/app.php';
-uasort($app['links'], fn($a, $b) => ($b['isHighlight'] ?? false) <=> ($a['isHighlight'] ?? false));
+sortArray($app['links'], 'isHighlight', 'DESC');
 
 view('home', [
     'title' => $app['name'] . (isset($app['title']) ? " - {$app['title']}" : null),
